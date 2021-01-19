@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import br.com.alura.forum.modelo.Resposta;
 
+//Dados que serão mostrados no momento de responder uma duvida do Forum
 public class RespostaDto {
     
     private Long id;

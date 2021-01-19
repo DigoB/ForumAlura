@@ -9,7 +9,7 @@ import br.com.alura.forum.modelo.Curso;
 import br.com.alura.forum.modelo.Topico;
 import br.com.alura.forum.repositories.CursoRepository;
 
-
+//Dados que podem ser registrados ao fazer uma pergunta no Forum
 public class TopicoForm {
 
     @NotNull @NotEmpty @Length(min = 5)

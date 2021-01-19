@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import br.com.alura.forum.modelo.StatusTopico;
 import br.com.alura.forum.modelo.Topico;
 
+//Traz mais informações sobre o topico(pergunta) no Forum
 public class DetalhesDoTopicoDto {
     
     private Long id;
