@@ -23,7 +23,10 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         .antMatchers(HttpMethod.GET, "/topicos").permitAll()
-        .antMatchers(HttpMethod.GET, "/topicos/*").permitAll();
+        .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
+        .anyRequest().authenticated()
+        //Gera um formulário de autenticação automáticamente pelo Spring
+        .and().formLogin();
     }
 
     //Configurações de recursos estáticos(js, css, imagens, etc)
