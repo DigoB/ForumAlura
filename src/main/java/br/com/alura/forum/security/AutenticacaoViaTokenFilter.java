@@ -12,17 +12,29 @@ import org.springframework.web.filter.OncePerRequestFilter;
 //Classe para filtrar a autenticação do cliente ao fazer as requisições
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
+    //Não é possivel fazer injeção de dependencias em Filtros
+	private TokenService tokenService;
+
+    //Gerado o construtor no lugar da injeção de dependencias
+
+    public AutenticacaoViaTokenFilter(TokenService tokenService) {
+        this.tokenService = tokenService;
+    }
+
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
                 String token = recuperarToken(request);
-                System.out.println(token);
-
+                boolean valido = tokenService.isTokenValido(token);
+                System.out.println(valido);
                 filterChain.doFilter(request, response);
     }
 
-    private String recuperarToken(HttpServletRequest request) {
+
+	private String recuperarToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         if(token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
             return null;
