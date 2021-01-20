@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -43,7 +44,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         //Csrf = Cross-Site Request Forgery - É um tipo de ataque hacker, está desabilitado pois o token
         // já faz o papel de defesa contra esse tipo de ataque.
         .and().csrf().disable()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        //Roda o filtro para pegar o token antes de fazer a autenticação
+        .and().addFilterBefore(new AutenticacaoViaTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     //Configurações de recursos estáticos(js, css, imagens, etc)
