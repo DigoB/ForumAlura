@@ -48,6 +48,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.GET, "/topicos").permitAll()
         .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
         .antMatchers(HttpMethod.POST, "/auth").permitAll()
+        .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
         .anyRequest().authenticated()
         //Csrf = Cross-Site Request Forgery - É um tipo de ataque hacker, está desabilitado pois o token
         // já faz o papel de defesa contra esse tipo de ataque.

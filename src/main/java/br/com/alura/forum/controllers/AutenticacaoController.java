@@ -1,6 +1,5 @@
 package br.com.alura.forum.controllers;
 
-import javax.security.auth.message.AuthException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
