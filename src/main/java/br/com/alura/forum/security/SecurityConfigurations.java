@@ -50,7 +50,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.POST, "/auth").permitAll()
         .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
         .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-        .antMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+        .antMatchers(HttpMethod.DELETE, "/topicos/*").hasRole("MODERADOR")
         .anyRequest().authenticated()
         //Csrf = Cross-Site Request Forgery - É um tipo de ataque hacker, está desabilitado pois o token
         // já faz o papel de defesa contra esse tipo de ataque.
@@ -65,5 +65,5 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 public void configure(WebSecurity web) throws Exception {
     web.ignoring()
         .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
-}
+    }
 }
